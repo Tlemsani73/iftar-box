@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #fefaf6;
+  --color-foreground: #1a1a1a;
+  --color-primary: #c2410c;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f59e0b;
+  --color-secondary-foreground: #1a1a1a;
+  --color-muted: #f5f0eb;
+  --color-muted-foreground: #6b7280;
+  --color-card: #ffffff;
+  --color-card-foreground: #1a1a1a;
+  --color-border: #e5e0db;
+  --color-accent: #059669;
+  --color-accent-foreground: #ffffff;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
