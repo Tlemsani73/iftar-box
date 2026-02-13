@@ -21,3 +21,49 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* ─── Focus-visible for accessibility ─── */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Step slide transitions ─── */
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 250ms ease-out both;
+}
+.animate-slide-in-left {
+  animation: slide-in-left 250ms ease-out both;
+}
+
+/* ─── Price pop highlight ─── */
+@keyframes price-pop {
+  0%   { transform: scale(1); color: var(--color-primary); }
+  40%  { transform: scale(1.15); color: var(--color-accent); }
+  100% { transform: scale(1); color: var(--color-primary); }
+}
+
+.animate-price-pop {
+  animation: price-pop 280ms ease-out;
+}
+
+/* ─── Step indicator connector fill ─── */
+@keyframes line-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.animate-line-fill {
+  animation: line-fill 300ms ease-out both;
+  transform-origin: left;
+}

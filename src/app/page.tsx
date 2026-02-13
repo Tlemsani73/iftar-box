@@ -11,36 +11,12 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
+import { TopBar } from "@/components/TopBar";
+import { Footer } from "@/components/Footer";
+import { MobileCTA } from "@/components/MobileCTA";
 
 const WHATSAPP_URL = "https://wa.me/15141234567?text=I%20want%20to%20order%20an%20Iftar%20Box";
 const PRODUCT_URL = "/product";
-const CHECKOUT_URL = "/checkout";
-
-/* ─── Sticky Top Bar ─── */
-function TopBar() {
-  return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-border">
-      <div className="max-w-5xl mx-auto flex items-center justify-between px-4 h-14">
-        <Link href="/" className="flex items-center gap-2">
-          <Moon className="w-6 h-6 text-primary" />
-          <span className="font-bold text-lg text-foreground tracking-tight">
-            IftarBox
-          </span>
-        </Link>
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground hover:opacity-90 transition-opacity"
-        >
-          <MessageCircle className="w-4 h-4" />
-          <span className="hidden sm:inline">Order via WhatsApp</span>
-          <span className="sm:hidden">WhatsApp</span>
-        </a>
-      </div>
-    </header>
-  );
-}
 
 /* ─── Hero Section ─── */
 function Hero() {
@@ -65,7 +41,7 @@ function Hero() {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 md:justify-start justify-center">
               <Link
-                href={CHECKOUT_URL}
+                href={PRODUCT_URL}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-lg hover:opacity-90 transition-opacity"
               >
                 Reserve My Ramadan Iftar
@@ -83,15 +59,18 @@ function Hero() {
             </div>
           </div>
 
-          {/* Image placeholder */}
+          {/* Video */}
           <div className="flex-1 mt-10 md:mt-0 flex justify-center">
-            <div className="relative w-full max-w-sm aspect-square rounded-3xl bg-gradient-to-br from-orange-200 to-amber-100 flex items-center justify-center shadow-xl overflow-hidden">
-              <div className="text-center p-6">
-                <UtensilsCrossed className="w-20 h-20 text-primary/40 mx-auto mb-4" />
-                <p className="text-sm text-primary/60 font-medium">
-                  Replace with your Iftar Box photo
-                </p>
-              </div>
+            <div className="relative w-full max-w-sm aspect-square rounded-3xl shadow-xl overflow-hidden">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source src="/hero-video.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
         </div>
@@ -155,21 +134,21 @@ function SubscriptionTeaser() {
   const plans = [
     {
       name: "Single Day",
-      price: 25,
+      price: 23,
       unit: "/ day",
       description: "Try it once",
       highlight: false,
     },
     {
       name: "10-Day Pack",
-      price: 22,
+      price: 20,
       unit: "/ day",
       description: "Save $30 total",
       highlight: false,
     },
     {
       name: "Full Ramadan",
-      price: 19,
+      price: 18,
       unit: "/ day",
       description: "30 days – Best value",
       highlight: true,
@@ -217,7 +196,7 @@ function SubscriptionTeaser() {
                 {plan.description}
               </p>
               <Link
-                href={CHECKOUT_URL}
+                href={PRODUCT_URL}
                 className={`w-full rounded-xl py-3 text-sm font-bold transition-opacity hover:opacity-90 text-center ${
                   plan.highlight
                     ? "bg-primary text-primary-foreground shadow"
@@ -331,7 +310,7 @@ function FinalCTA() {
           cooking this Ramadan.
         </p>
         <Link
-          href={CHECKOUT_URL}
+          href={PRODUCT_URL}
           className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-10 py-4 text-base font-bold text-primary-foreground shadow-lg hover:opacity-90 transition-opacity"
         >
           Secure My Ramadan Iftar Subscription
@@ -339,41 +318,6 @@ function FinalCTA() {
         </Link>
       </div>
     </section>
-  );
-}
-
-/* ─── Sticky Bottom CTA (Mobile) ─── */
-function StickyBottomCTA() {
-  return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white/95 backdrop-blur border-t border-border px-4 py-3 safe-area-bottom">
-      <div className="flex items-center justify-between gap-3">
-        <div className="min-w-0">
-          <p className="text-xs font-semibold text-foreground truncate">
-            Ramadan Iftar Box
-          </p>
-          <p className="text-[10px] text-muted-foreground">
-            Limited Capacity
-          </p>
-        </div>
-        <Link
-          href={CHECKOUT_URL}
-          className="shrink-0 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow hover:opacity-90 transition-opacity"
-        >
-          Reserve Now
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-/* ─── Footer ─── */
-function Footer() {
-  return (
-    <footer className="bg-foreground text-background/60 py-8 pb-24 md:pb-8">
-      <div className="max-w-5xl mx-auto px-4 text-center text-xs">
-        <p>&copy; {new Date().getFullYear()} IftarBox Montreal. All rights reserved.</p>
-      </div>
-    </footer>
   );
 }
 
@@ -391,7 +335,12 @@ export default function Home() {
         <FinalCTA />
       </main>
       <Footer />
-      <StickyBottomCTA />
+      <MobileCTA
+        href={PRODUCT_URL}
+        title="Ramadan Iftar Box"
+        subtitle="Limited Capacity"
+        label="Reserve Now"
+      />
     </>
   );
 }
